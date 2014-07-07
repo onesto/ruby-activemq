@@ -3,7 +3,6 @@ $:.unshift(File.join(File.dirname(__FILE__), "..", "lib"))
 require 'rspec'
 require 'activemq'
 require 'matchers_helper'
-require 'ruby-debug'
 
 RSpec.configure do |config|
   def fixture(path)
@@ -38,4 +37,4 @@ RSpec.configure do |config|
   alias silence capture
 end
 
-BROKER_URL_TEST = "tcp://localhost:60606"
+BROKER_URL_TEST = "tcp://localhost:61616"
