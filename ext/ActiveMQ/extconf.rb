@@ -25,27 +25,15 @@ if RUBY_PLATFORM =~ /darwin/
   append_ld_flags '-all_load'
 end
 
-
 # Give it a name
 extension_name = 'ActiveMQ'
 
+# Gather activemq-cpp configuration
+$CFLAGS += ' ' + `activemqcpp-config --cflags`
+$libs += " " << `activemqcpp-config --libs`
+
 # The destination
 dir_config(extension_name)
-
-dir_config('activemq-cpp', '/opt/activemq-cpp-3.2.5/include/activemq-cpp-3.2.5', '/opt/activemq-cpp-3.2.5/lib')
-
-unless have_library('activemq-cpp')
-  crash(<<EOL)
-need activemq-cpp.
-
-Install the activemq-cpp or try passing one of the following options
-to extconf.rb:
-
-  --with-activemq-cpp-dir=/path/to/activemq-cpp
-  --with-activemq-cpp-lib=/path/to/activemq-cpp/lib
-  --with-activemq-cpp-include=/path/to/activemq-cpp/include
-EOL
-end
 
 # Do the work
 create_makefile(extension_name)
