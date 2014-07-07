@@ -44,21 +44,21 @@ describe ActiveMQ::MessageProducer do
     end
 
     it "should have default disable_message_time_stamp equal false" do
-      producer.disable_message_time_stamp?.should be_false
+      producer.disable_message_time_stamp?.should == false
     end
 
     it "should accept a boolean as value for disable_message_time_stamp attribute" do
       producer.disable_message_time_stamp = true
-      producer.disable_message_time_stamp?.should be_true
+      producer.disable_message_time_stamp?.should == true
     end
 
     it "should have default disable_message_id equal false" do
-      producer.disable_message_id?.should be_false
+      producer.disable_message_id?.should == false
     end
 
     it "should accept a boolean as value for disable_message_id attribute" do
       producer.disable_message_id = true
-      producer.disable_message_id?.should be_true
+      producer.disable_message_id?.should == true
     end
 
   end
