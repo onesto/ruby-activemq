@@ -4,7 +4,7 @@ require 'spec_helper'
 describe ActiveMQ::ConnectionFactory do
   describe "constants" do
     it "should has a defined default_uri" do
-      ActiveMQ::ConnectionFactory.constants.should include("DEFAULT_URI")
+      ActiveMQ::ConnectionFactory.constants.should include(:DEFAULT_URI)
     end
 
     it "should has a string as default_uri" do

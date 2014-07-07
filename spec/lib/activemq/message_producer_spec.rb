@@ -13,7 +13,7 @@ describe ActiveMQ::MessageProducer do
 
   describe "attributes" do
     it "should respond to some attributes accessors methods" do
-      ActiveMQ::MessageProducer.instance_methods.should include_all(["time_to_live", "time_to_live=", "delivery_mode", "delivery_mode=", "priority", "priority=", "disable_message_time_stamp?", "disable_message_time_stamp=", "disable_message_id?", "disable_message_id="])
+      ActiveMQ::MessageProducer.instance_methods.should include_all([:time_to_live, :time_to_live=, :delivery_mode, :delivery_mode=, :priority, :priority=, :disable_message_time_stamp?, :disable_message_time_stamp=, :disable_message_id?, :disable_message_id=])
     end
 
     it "should have default time to live equal 0" do
@@ -65,7 +65,7 @@ describe ActiveMQ::MessageProducer do
 
   describe "send message" do
     it "should respond to some send message methods" do
-      ActiveMQ::MessageProducer.instance_methods.should include_all(["send_message"])
+      ActiveMQ::MessageProducer.instance_methods.should include_all([:send_message])
     end
 
     it "should be possible send a message" do

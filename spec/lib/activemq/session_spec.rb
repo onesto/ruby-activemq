@@ -4,7 +4,7 @@ require 'spec_helper'
 describe ActiveMQ::Session do
   describe "constants" do
     it "should has a defined AcknowledgeMode" do
-      ActiveMQ::Session.constants.should include("AcknowledgeMode")
+      ActiveMQ::Session.constants.should include(:AcknowledgeMode)
     end
 
     it "should has a Class as AcknowledgeMode" do
@@ -12,7 +12,7 @@ describe ActiveMQ::Session do
     end
 
     it "should has some constants in the class AcknowledgeMode" do
-      ActiveMQ::Session::AcknowledgeMode.constants.should include_all(["AUTO_ACKNOWLEDGE", "DUPS_OK_ACKNOWLEDGE", "CLIENT_ACKNOWLEDGE", "SESSION_TRANSACTED"])
+      ActiveMQ::Session::AcknowledgeMode.constants.should include_all([:AUTO_ACKNOWLEDGE, :DUPS_OK_ACKNOWLEDGE, :CLIENT_ACKNOWLEDGE, :SESSION_TRANSACTED])
     end
   end
 
@@ -86,7 +86,7 @@ describe ActiveMQ::Session do
     end
 
     it "should respond to transactions methods" do
-      ActiveMQ::Session.instance_methods.should include_all(["close", "commit", "rollback", "recover"])
+      ActiveMQ::Session.instance_methods.should include_all([:close, :commit, :rollback, :recover])
     end
   end
 end

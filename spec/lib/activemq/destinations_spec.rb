@@ -4,7 +4,7 @@ require 'spec_helper'
 describe ActiveMQ::Destination do
   describe "constants" do
     it "should has a defined DestinationType" do
-      ActiveMQ::Destination.constants.should include("DestinationType")
+      ActiveMQ::Destination.constants.should include(:DestinationType)
     end
 
     it "should has a Class as DestinationType" do
@@ -12,7 +12,7 @@ describe ActiveMQ::Destination do
     end
 
     it "should has some constants in the class DestinationType" do
-      ActiveMQ::Destination::DestinationType.constants.should include_all(["TOPIC", "QUEUE", "TEMPORARY_TOPIC", "TEMPORARY_QUEUE"])
+      ActiveMQ::Destination::DestinationType.constants.should include_all([:TOPIC, :QUEUE, :TEMPORARY_TOPIC, :TEMPORARY_QUEUE])
     end
   end
 

@@ -4,7 +4,7 @@ require 'spec_helper'
 describe ActiveMQ::DeliveryMode do
   describe "constants" do
     it "should has a defined PERSISTENT" do
-      ActiveMQ::DeliveryMode.constants.should include("PERSISTENT")
+      ActiveMQ::DeliveryMode.constants.should include(:PERSISTENT)
     end
 
     it "should PERSISTENT be equal to 0" do
@@ -12,7 +12,7 @@ describe ActiveMQ::DeliveryMode do
     end
 
     it "should has a defined NON_PERSISTENT" do
-      ActiveMQ::DeliveryMode.constants.should include("NON_PERSISTENT")
+      ActiveMQ::DeliveryMode.constants.should include(:NON_PERSISTENT)
     end
 
     it "should NON_PERSISTENT be equal to 1" do
