@@ -29,8 +29,8 @@ end
 extension_name = 'ActiveMQ'
 
 # Gather activemq-cpp configuration
-$CFLAGS += ' ' + `activemqcpp-config --cflags`
-$libs += " " << `activemqcpp-config --libs`
+$CFLAGS += ' ' + `activemqcpp-config --cflags`.chomp + ' '
+$libs += ' ' + `activemqcpp-config --libs`.chomp + ' '
 
 # The destination
 dir_config(extension_name)
