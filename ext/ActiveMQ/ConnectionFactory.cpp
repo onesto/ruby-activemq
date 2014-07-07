@@ -1,7 +1,15 @@
 #include "activemq.hpp"
 
+
+static std::string getBrokerURIString(activemq::core::ActiveMQConnectionFactory* cf)
+{
+	return cf->getBrokerURI().toString();
+}
+
 void register_ConnectionFactory(Module rb_module)
 {
+	typedef void (activemq::core::ActiveMQConnectionFactory::*setBrokerURIString)(const std::string&);
+
 	Data_Type< activemq::core::ActiveMQConnectionFactory > rb_cConnectionFactory =  define_class_under< activemq::core::ActiveMQConnectionFactory >(rb_module, "ConnectionFactory");
 	rb_cConnectionFactory.define_method("instance?", &instance, (Arg("class")));
 
@@ -14,8 +22,8 @@ void register_ConnectionFactory(Module rb_module)
 	rb_cConnectionFactory.define_method("password", &activemq::core::ActiveMQConnectionFactory::getPassword);
 	rb_cConnectionFactory.define_method("password=", &activemq::core::ActiveMQConnectionFactory::setPassword, (Arg("password")));
 
-	rb_cConnectionFactory.define_method("broker_url", &activemq::core::ActiveMQConnectionFactory::getBrokerURL);
-	rb_cConnectionFactory.define_method("broker_url=", &activemq::core::ActiveMQConnectionFactory::setBrokerURL, (Arg("broker_url")));
+	rb_cConnectionFactory.define_method("broker_url", &getBrokerURIString);
+	rb_cConnectionFactory.define_method("broker_url=", setBrokerURIString(&activemq::core::ActiveMQConnectionFactory::setBrokerURI), (Arg("broker_url")));
 
 	rb_cConnectionFactory.define_method("client_id", &activemq::core::ActiveMQConnectionFactory::getClientId);
 	rb_cConnectionFactory.define_method("client_id=", &activemq::core::ActiveMQConnectionFactory::setClientId, (Arg("client_id")));
