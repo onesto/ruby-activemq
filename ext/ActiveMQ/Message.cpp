@@ -85,9 +85,9 @@ void register_Message(Module rb_module) {
 //	rb_cMessage.define_method("type", &cms::Message::getCMSType);
 //	rb_cMessage.define_method("type=", &cms::Message::setCMSType, (Arg("type")));
 //
-//	rb_cMessage.define_method("correlation_id", &cms::Message::getCMSCorrelationID);
-//	rb_cMessage.define_method("correlation_id=", &cms::Message::setCMSCorrelationID, (Arg("correlationId")));
-//
-//	rb_cMessage.define_method("delivery_mode", &cms::Message::getCMSDeliveryMode);
-//	rb_cMessage.define_method("delivery_mode=", &cms::Message::setCMSDeliveryMode, (Arg("mode")));
+	rb_cMessage.define_method("correlation_id", &cms::Message::getCMSCorrelationID);
+	rb_cMessage.define_method("correlation_id=", &cms::Message::setCMSCorrelationID, (Arg("correlation_id")));
+
+	rb_cMessage.define_method("delivery_mode", &cms::Message::getCMSDeliveryMode);
+	rb_cMessage.define_method("delivery_mode=", &cms::Message::setCMSDeliveryMode, (Arg("delivery_mode")));
 }

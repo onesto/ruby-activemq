@@ -156,4 +156,18 @@ describe ActiveMQ::Message do
       subject.get_string_property('a').should == '1'
     end
   end
+
+  describe "correlation_id" do
+    it "should return what was set" do
+      subject.correlation_id = 'abc'
+      subject.correlation_id.should == 'abc'
+    end
+  end
+
+  describe "delivery_mode" do
+    it "should return what was set" do
+      subject.delivery_mode = ActiveMQ::DeliveryMode::PERSISTENT
+      subject.delivery_mode.should == ActiveMQ::DeliveryMode::PERSISTENT
+    end
+  end
 end
