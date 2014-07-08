@@ -6,6 +6,12 @@ module ActiveMQ
     def properties
       @property_proxy ||= PropertyProxy.new(self)
     end
+
+    def properties=(hash)
+      hash.each do |key, value|
+        properties[key] = value
+      end
+    end
   end
 
   private

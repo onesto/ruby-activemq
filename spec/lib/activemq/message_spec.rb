@@ -53,6 +53,14 @@ describe ActiveMQ::Message do
     end
   end
 
+  describe "properties=" do
+    it "should set values from the given hash" do
+      subject.properties = {a: '1', b: 2}
+      subject.properties[:a].should == '1'
+      subject.properties[:b].should == 2
+    end
+  end
+
   describe "property_names" do
     it "should be initially empty" do
       subject.property_names.should be_empty
