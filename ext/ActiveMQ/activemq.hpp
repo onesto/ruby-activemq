@@ -34,6 +34,9 @@ long long from_ruby<long long>(Rice::Object x);
 template<>
 Rice::Object to_ruby<long long>(long long const & x);
 
+template<>
+Rice::Object to_ruby<std::vector<std::string> >(std::vector<std::string> const & x);
+
 Object
 instance(Object self, Object class_name);
 

@@ -37,6 +37,11 @@ Object to_ruby<long long>(long long const & x)
 	return protect(detail::long2num, x);
 }
 
+template<>
+Rice::Object to_ruby<std::vector<std::string> >(std::vector<std::string> const & x)
+{
+	return Rice::Array(x.begin(), x.end());
+}
 Object
 instance(Object self, Object class_name)
 {
