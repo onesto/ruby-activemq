@@ -2,6 +2,11 @@
 
 void register_Message(Module rb_module) {
 	Data_Type< cms::Message > rb_cMessage = define_class_under< cms::Message >(rb_module, "Message");
+
+	rb_cMessage.const_set("DEFAULT_DELIVERY_MODE", to_ruby(cms::Message::DEFAULT_DELIVERY_MODE));
+	rb_cMessage.const_set("DEFAULT_MSG_PRIORITY", to_ruby(cms::Message::DEFAULT_MSG_PRIORITY));
+	rb_cMessage.const_set("DEFAULT_TIME_TO_LIVE", to_ruby(cms::Message::DEFAULT_TIME_TO_LIVE));
+
 	rb_cMessage.define_method("instance?", &instance, (Arg("class")));
 
 //	rb_cMessage.define_method("getIntProperty", &cms::Message::getIntProperty, (Arg("name")));
