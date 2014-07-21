@@ -1,8 +1,12 @@
 #include "activemq.hpp"
 
 void register_MessageProducer(Module rb_module) {
+	void (cms::MessageProducer::*close)(void) = &cms::MessageProducer::close;
+
 	Data_Type< cms::MessageProducer > rb_cMessageProducer =  define_class_under< cms::MessageProducer >(rb_module, "MessageProducer");
 	rb_cMessageProducer.define_method("instance?", &instance, (Arg("class")));
+
+	rb_cMessageProducer.define_method("close", close);
 
 	rb_cMessageProducer.define_method("time_to_live", &cms::MessageProducer::getTimeToLive);
 	rb_cMessageProducer.define_method("time_to_live=", &cms::MessageProducer::setTimeToLive, (Arg("time")));
