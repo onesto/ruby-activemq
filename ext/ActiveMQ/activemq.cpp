@@ -6,6 +6,7 @@ void register_Session(Module rb_module);
 void register_Message(Module rb_module);
 void register_Destinations(Module rb_module);
 void register_MessageProducer(Module rb_module);
+void register_MessageConsumer(Module rb_module);
 void register_DeliveryMode(Module rb_module);
 void register_TextMessage(Module rb_module);
 
@@ -21,6 +22,7 @@ void Init_ActiveMQ() {
 	register_Message(rb_mActivemq);
 	register_Destinations(rb_mActivemq);
 	register_MessageProducer(rb_mActivemq);
+	register_MessageConsumer(rb_mActivemq);
 	register_DeliveryMode(rb_mActivemq);
 	register_TextMessage(rb_mActivemq);
 }
