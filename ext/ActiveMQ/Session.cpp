@@ -6,8 +6,11 @@ Rice::Object to_ruby<cms::Session::AcknowledgeMode >(cms::Session::AcknowledgeMo
 }
 
 void register_Session(Module rb_module) {
+	void (cms::Session::*start)(void) = &cms::Session::start;
+	void (cms::Session::*stop)(void) = &cms::Session::stop;
+	void (cms::Session::*close)(void) = &cms::Session::close;
 
-//	cms::MessageConsumer* (cms::Session::*Session_createConsumer1)(const cms::Destination*) = &cms::Session::createConsumer;
+	cms::MessageConsumer* (cms::Session::*Session_createConsumer1)(const cms::Destination*) = &cms::Session::createConsumer;
 //	cms::MessageConsumer* (cms::Session::*Session_createConsumer2)(const cms::Destination*, const std::string&) = &cms::Session::createConsumer;
 //	cms::MessageConsumer* (cms::Session::*Session_createConsumer3)(const cms::Destination*, const std::string&, bool) = &cms::Session::createConsumer;
 	cms::TextMessage* (cms::Session::*Session_createTextMessage1)(const std::string&) = &cms::Session::createTextMessage;
@@ -21,6 +24,10 @@ void register_Session(Module rb_module) {
 //	rb_cSession.define_method("createBytesMessage", Session_createBytesMessage0);
 //	rb_cSession.define_method("createBytesMessage2", Session_createBytesMessage2, (Arg("bytes"), Arg("bytesSize")));
 
+	rb_cSession.define_method("start", start);
+	rb_cSession.define_method("stop", stop);
+	rb_cSession.define_method("close", close);
+
 	rb_cSession.define_method("create_text_message", Session_createTextMessage1, (Arg("text") = new std::string("")));
 
 	rb_cSession.define_method("create_message", &cms::Session::createMessage);
@@ -28,7 +35,7 @@ void register_Session(Module rb_module) {
 //	rb_cSession.define_method("create_stream_message", &cms::Session::createStreamMessage);
 //	rb_cSession.define_method("create_map_message", &cms::Session::createMapMessage);
 
-//	rb_cSession.define_method("createConsumer", Session_createConsumer1, (Arg("destination")));
+	rb_cSession.define_method("create_consumer", Session_createConsumer1, (Arg("destination")));
 //	rb_cSession.define_method("createConsumer2", Session_createConsumer2, (Arg("destination"), Arg("selector")));
 //	rb_cSession.define_method("createConsumer3", Session_createConsumer3, (Arg("destination"), Arg("selector"), Arg("noLocal")));
 
@@ -44,7 +51,6 @@ void register_Session(Module rb_module) {
 
 	rb_cSession.define_method("transacted?", &cms::Session::isTransacted);
 
-	rb_cSession.define_method("close", &cms::Session::close);
 	rb_cSession.define_method("commit", &cms::Session::commit);
 	rb_cSession.define_method("rollback", &cms::Session::rollback);
 	rb_cSession.define_method("recover", &cms::Session::recover);
