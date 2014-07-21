@@ -45,6 +45,13 @@ describe ActiveMQ::Session do
     end
   end
 
+  describe "consumer" do
+    it "should create a consumer from given destination" do
+      session = ActiveMQ::ConnectionFactory.new(BROKER_URL_TEST).create_connection.create_session
+      session.create_consumer(session.create_topic("TEST_SESSION")).should be_instance_of(ActiveMQ::MessageConsumer)
+    end
+  end
+
   describe "acknowledge_mode" do
     it "should not be possible change acknowledge_mode" do
       session = ActiveMQ::ConnectionFactory.new(BROKER_URL_TEST).create_connection.create_session
@@ -86,7 +93,7 @@ describe ActiveMQ::Session do
     end
 
     it "should respond to transactions methods" do
-      ActiveMQ::Session.instance_methods.should include_all([:close, :commit, :rollback, :recover])
+      ActiveMQ::Session.instance_methods.should include_all([:start, :stop, :close, :commit, :rollback, :recover])
     end
   end
 end
